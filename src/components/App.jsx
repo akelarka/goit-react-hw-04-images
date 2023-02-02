@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Component } from 'react';
 import { AppWrapper } from './App.styled';
 import getPhoto from './API/API';
 import Searchbar from './Searchbar/Searchbar';
@@ -14,7 +13,6 @@ export const App = () => {
   const [photos, setPhotos] = useState([]);
   const [request, setRequest] = useState('');
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
   const [largeImageURL, setLargeImageURL] = useState('');
   const [message, setMessage] = useState(
     'To display pictures, enter a query in the search field'
@@ -43,7 +41,6 @@ export const App = () => {
       );
       setMessage('');
       setPhotos(prevState => [...prevState, ...photosContent]);
-      setTotalPages(r.totalHits / per_page);
       setContentLoad(true);
     });
   }, [page, request]);
